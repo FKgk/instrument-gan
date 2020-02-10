@@ -15,7 +15,8 @@ x_folder = 'marimba'
 y_folder = 'synthesizer'
 process_path = "process_data"
 
-shutil.rmtree(os.path.join(process_path))​
+if os.path.isdir(os.path.join(process_path)):
+    shutil.rmtree(os.path.join(process_path))
 
 if not os.path.isdir(process_path):
     os.makedirs(process_path)
