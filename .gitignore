@@ -1,3 +1,6 @@
 /data/
 /data/*
 *.wav
+
+/process_data/
+/visual_loss/
