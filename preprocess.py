@@ -34,7 +34,7 @@ def read_wav_data(index):
     
     assert(x_samplerate == samplerate and y_samplerate == samplerate)
 
-    return np.array(x_file, dtype=float), np.array(y_file, dtype=float)
+    return np.array(x_file), np.array(y_file)
 
 def segment_data(x_train, y_train):
     min_dataset = min(x_train.shape[0] // time_length, y_train.shape[0] // time_length)
