@@ -39,11 +39,18 @@ def read_wav_data(index):
 def segment_data(x_train, y_train):
     min_dataset = min(x_train.shape[0] // time_length, y_train.shape[0] // time_length)
     time = min_dataset * time_length
+
+    x_train_segments = list()
+    y_train_segments = list()
+
+    x_train = x_train[:time, :]
+    y_train = y_train[:time, :]
     
-    x_train = x_train[:time, :].reshape(min_dataset, time_length, 2)
-    y_train = y_train[:time, :].reshape(min_dataset, time_length, 2)
+    for i in range(1, min_dataset):
+        x_train_segments.append(x_train[(i-1)*time_length:i*time_length, :])
+        y_train_segments.append(y_train[(i-1)*time_length:i*time_length, :])
     
-    return x_train, y_train
+    return np.array(x_train_segments), np.array(y_train_segments)
 
 def count_data():
     return min(len(os.listdir(os.path.join(path, x_folder))), len(os.listdir(os.path.join(path, y_folder))))
